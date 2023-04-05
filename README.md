@@ -6,17 +6,17 @@ To get started with the API, follow these steps:
 
 Clone the repository:
 
-__git clone https://github.com/matanew1/UsersREST_API.git__
+----> __git clone https://github.com/matanew1/UsersREST_API.git__
 
 Install the dependencies:
 
-__cd UsersREST_API__
+----> __cd UsersREST_API__
 
-__npm install__
+----> __npm install__
 
 Start the server:
 
-__npm start__
+----> __npm start__
 
 The server will start running on http://localhost:3000. You can now use the API to manage user data.
 
