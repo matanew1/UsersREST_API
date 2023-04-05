@@ -1,6 +1,6 @@
 const fs = require('fs');
-const constants = require('../constants/constants');
-const User = require('../entities/user');
+const constants = require('./constants');
+const User = require('./user');
 
 class UserService {
   constructor() {
@@ -36,7 +36,8 @@ class UserService {
     const foundUser = this.users.find(user => user.id === Number(deleteUserId));
     if(!foundUser) return false;
     this.users.pop(foundUser);
-    this.writeUsers(this.filePath, this.users);
+    this.numOfUsers = this.users.length;
+    this.writeUsers();
     return true;
   }
 
@@ -52,14 +53,13 @@ class UserService {
   }
 
   updateUser(userToUpdate) {
-    const user = this.users.find(user => user.id === userToUpdate.id);
+    const foundUser = this.users.find(user => user.id === userToUpdate.id);
     
-    if (!user) {
+    if (!foundUser) {
       console.log(`User with id ${userToUpdate.id} not found.`);
       return;
     }
-    
-    const updatedUser = this.JsonToUser(userToUpdate);
+    const updatedUser = this.JsonToUser(foundUser);
     
     this.users = this.users.map(user => {
       if (user.id === userToUpdate.id) return updatedUser; 
@@ -75,7 +75,7 @@ class UserService {
 
   JsonToUser(user) {
     return new User(
-      this.numOfUsers + 1,
+      user.id,
       user.name,
       user.age,
       user.type

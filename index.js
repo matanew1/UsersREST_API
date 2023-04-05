@@ -1,6 +1,6 @@
 const express = require('express');
-const constants = require('../constants/constants');
-const UserService = require('../userService');
+const constants = require('./constants');
+const UserService = require('./userService');
 const userService = new UserService();
 
 const app = express();

@@ -20,8 +20,5 @@
   ],
   "exclude": [
     "node_modules"
-  ],
-  "devDependencies": {
-    "@types/node": "^18.15.11"
-  }
+  ]
 }
