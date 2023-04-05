@@ -44,7 +44,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"name\": \"Matan Bardugo\",\r\n  \"email\": \"matanew1@gmail.com\",\r\n  \"password\": \"123456!\"\r\n}\r\n"
+					"raw": "{\r\n  \"name\": \"Matan Fox\",\r\n  \"email\": \"matandb@gmail.com\",\r\n  \"password\": \"123456!\"\r\n}\r\n"
 				},
 				"url": {
 					"raw": "http://localhost:3000/api/users",
