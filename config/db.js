@@ -1,4 +1,4 @@
 module.exports = {
-    mongoURI: 'mongodb://localhost:27017/myapp'
+    mongoURI: 'mongodb+srv://matan:matan@cluster0.bgo3pus.mongodb.net/?retryWrites=true&w=majority'
   };
   
