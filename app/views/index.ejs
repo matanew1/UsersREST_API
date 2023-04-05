@@ -1,0 +1,45 @@
+<!-- views/index.ejs -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include("./header.ejs") %>
+    <title>My App</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #64b7d8;
+      }
+
+      h1 {
+        color: #010a0d;
+        text-align: center;
+        margin-top: 50px;
+      }
+
+      a {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        font-size: 18px;
+        color: #ffffff;
+        background-color: #008CBA;
+        border-radius: 5px;
+        padding: 10px;
+        text-decoration: none;
+        width: 200px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      a:hover {
+        background-color: #006B87;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>  
+    <h1>Welcome to my app</h1>
+    <a href="/api/users">Get All Users</a>
+    <%- include("./footer.ejs") %>
+  </body>
+</html>
