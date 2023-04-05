@@ -8,14 +8,9 @@ Clone the repository:
 
 git clone https://github.com/matanew1/UsersREST_API.git
 
-Install the dependencies:
+Install the dependencies: cd UsersREST_API; npm install
 
-cd UsersREST_API
-npm install
-
-Start the server:
-
-npm start
+Start the server: npm start
 
 The server will start running on http://localhost:3000. You can now use the API to manage user data.
 
