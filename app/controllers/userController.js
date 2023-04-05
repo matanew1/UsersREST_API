@@ -1,43 +1,47 @@
-exports.createUser = async ({ name, email, password }) => {
+const User = require('../models/userModel');
+
+exports.createUser = async (req, res) => {
+  const { name, email, password } = req.body;
+  const user = new User({ name, email, password });
   try {
-    const user = new User({ name, email, password });
     await user.save();
-    return user.toObject();
+    res.status(201).json(user);
   } catch (error) {
-    throw new Error('Failed to create user');
+    res.status(400).json({ message: error.message });
   }
 };
 
-exports.getUserById = async (id) => {
+exports.getUserById = async (req, res) => {
+  const { id } = req.params;
   try {
     const user = await User.findById(id);
-    if (!user) throw new Error('User not found');
-    return user.toObject();
+    res.json(user);
   } catch (error) {
-    throw new Error('Failed to get user');
+    res.status(404).json({ message: 'User not found' });
   }
 };
 
-exports.updateUser = async (id, { name, email, password }) => {
+exports.updateUser = async (req, res) => {
+  const { id } = req.params;
+  const { name, email, password } = req.body;
   try {
     const user = await User.findByIdAndUpdate(
       id,
       { name, email, password },
       { new: true }
     );
-    if (!user) throw new Error('User not found');
-    return user.toObject();
+    res.json(user);
   } catch (error) {
-    throw new Error('Failed to update user');
+    res.status(404).json({ message: 'User not found' });
   }
 };
 
-exports.deleteUser = async (id) => {
+exports.deleteUser = async (req, res) => {
+  const { id } = req.params;
   try {
-    const result = await User.findByIdAndDelete(id);
-    if (!result) throw new Error('User not found');
-    return true;
+    await User.findByIdAndDelete(id);
+    res.json({ message: 'User deleted successfully' });
   } catch (error) {
-    throw new Error('Failed to delete user');
+    res.status(404).json({ message: 'User not found' });
   }
 };
