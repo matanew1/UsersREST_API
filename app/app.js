@@ -5,7 +5,7 @@ const userRoutes = require('./routes/userRoutes');
 const {mongoURI} = require('../config/db')
 const {PORT} = require('../config/env')
 
-function run() {
+
   const app = express();
 
   // Connect to the MongoDB database
@@ -26,7 +26,6 @@ function run() {
   app.listen(PORT, () => {
     console.log(`https://localhost:${PORT}`);
   }).name = 'USER RUN & LISTEN';
-}
 
-exports.module = run;
+
 
