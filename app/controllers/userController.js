@@ -21,6 +21,15 @@ exports.getUserById = async (req, res) => {
   }
 };
 
+exports.getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find();
+    res.json(users);
+  } catch (error) {
+    res.status(404).json({ message: 'User not found' });
+  }
+};
+
 exports.updateUser = async (req, res) => {
   const { id } = req.params;
   const { name, email, password } = req.body;
