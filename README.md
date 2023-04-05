@@ -4,15 +4,21 @@ Welcome to UsersREST_API! This is a REST API that allows you to manage user data
 # Getting started
 To get started with the API, follow these steps:
 
-Clone the repository:
+**Clone the repository:
 
-git clone https://github.com/matanew1/UsersREST_API.git
+**git clone https://github.com/matanew1/UsersREST_API.git
 
-Install the dependencies: cd UsersREST_API; npm install
+**Install the dependencies:
 
-Start the server: npm start
+**cd UsersREST_API
 
-The server will start running on http://localhost:3000. You can now use the API to manage user data.
+**npm install
+
+**Start the server:
+
+**npm start
+
+**The server will start running on http://localhost:3000. You can now use the API to manage user data.
 
 # API documentation
 You can find the API documentation in the docs folder of the repository. The documentation includes information about the API endpoints, request and response formats, and examples.
