@@ -59,3 +59,21 @@ body {
     font-family: Arial, sans-serif;
     background-color: #64b7d8;
 }
+
+/* Style the container div */
+.container {
+    max-height: 500px; /* Adjust the height as needed */
+    overflow: auto;
+}
+
+/* Style the footer */
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #008CBA;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}

@@ -5,11 +5,12 @@ exports.createUser = async (req, res) => {
   const user = new User({ name, email, password });
   try {
     await user.save();
-    res.status(201).json(user);
+    res.status(201).render('success', { user: user }); // Pass the "user" object to the success template
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 };
+
 
 exports.getUserById = async (req, res) => {
   const { id } = req.params;
@@ -24,7 +25,7 @@ exports.getUserById = async (req, res) => {
 exports.getAllUsers = async (req, res) => {
   try {
     const users = await User.find();
-    res.render('user', { users });
+    res.render('allUsers', { users });
   } catch (error) {
     res.status(404).json({ message: 'User not found' });
   }

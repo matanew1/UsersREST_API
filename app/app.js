@@ -25,6 +25,7 @@ app.set('views', './views');
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/api', userRoutes);
+app.use(express.static(__dirname + '/views'));
 
 app.listen(PORT, () => {
   console.log(`https://localhost:${PORT}`);

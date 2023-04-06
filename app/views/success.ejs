@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/success.css" rel="stylesheet" type="text/css">
+    <%- include("./header.ejs") %>
+    <title>New User Added</title>
+  </head>
+  
+  <body>
+    <div class="container">
+      <h1>Added A New User...</h1>
+      <h1>Hello <%- user.name %>!</h1>
+      <a href="/api/home" class="btn">Back to Home</a>
+      <span>&nbsp;</span> <!-- add some space between buttons -->
+      <a href="/api/users" class="btn">View All Users</a>
+    </div>
+    <%- include("./footer.ejs") %>
+  </body>
+</html>
