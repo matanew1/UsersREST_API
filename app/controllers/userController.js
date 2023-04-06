@@ -1,8 +1,19 @@
 const User = require('../models/userModel');
 
+// Home page
+exports.loadHomePage = async (req, res) => {
+  res.render('index');
+};
+
+// load page of update user
+exports.loadUpdateUserPage = async (req, res) => {
+  const users = await User.find();
+  res.render('updateUser', {users: users});
+}
+
 // update a specific user
 exports.updateUser = async (req, res) => {
-  const id = req.params.user_id;
+  const id = req.params.id;
   const { name, email, password } = req.body;
   try {
     const user = await User.findByIdAndUpdate(
@@ -15,6 +26,11 @@ exports.updateUser = async (req, res) => {
   } catch (error) {
     res.status(404).json({ message: 'User not found' });
   }
+};
+
+// load page of create user
+exports.loadCreateUserPage = async (req, res) => {
+  res.render('newUser');
 };
 
 // create a new user
@@ -62,7 +78,6 @@ exports.getAllUsersToDelete = async (req, res) => {
 // delete a specific user
 exports.deleteUser = async (req, res) => {
   const { id } = req.params;
-  console.log(id);
   try {
     const user = await User.findByIdAndDelete(id);
     const users = await User.find();
@@ -76,7 +91,8 @@ exports.deleteUser = async (req, res) => {
 exports.deleteAllUsers = async (req, res) => {
   try {
     await User.deleteMany({});
-    res.status(201).render('successDelete', { user: null }); // Pass the "user" object to the success template
+    const users = await User.find();
+    res.status(201).render('successDelete', { user: null, users: users }); // Pass the "user" object to the success template
   } catch (error) {
     res.status(500).json({ message: 'Failed to delete all users' });
   }
