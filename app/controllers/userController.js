@@ -1,5 +1,37 @@
 const User = require('../models/userModel');
 
+// exports.loadUpdateForm = async (req, res) => {
+//   const users = await User.find();
+//   res.render('updateUser', { users: users });
+// };
+
+// exports.getIdUserToUpdate = async (req, res) => {
+//   const selectedUser = req.params;
+//   res.render('updateUser', { selectedUser: selectedUser });
+// };
+
+// exports.updateUserId = async (req, res) => {
+//   const selectedUserId = req.body.user_id;
+//   const selectedUser = await User.findById(selectedUserId);
+//   res.redirect(`/api/users/update/${selectedUserId}`);
+// }
+
+exports.updateUser = async (req, res) => {
+  const id = req.params.user_id;
+  const { name, email, password } = req.body;
+  try {
+    const user = await User.findByIdAndUpdate(
+      id,
+      { name, email, password },
+      { new: true }
+    );
+    const users = await User.find();
+    res.render('updateUser', { user: user, users: users });
+  } catch (error) {
+    res.status(404).json({ message: 'User not found' });
+  }
+};
+
 exports.createUser = async (req, res) => {
   const { name, email, password } = req.body;
   const user = new User({ name, email, password });
@@ -25,21 +57,6 @@ exports.getAllUsers = async (req, res) => {
   try {
     const users = await User.find();
     res.render('allUsers', { users });
-  } catch (error) {
-    res.status(404).json({ message: 'User not found' });
-  }
-};
-
-exports.updateUser = async (req, res) => {
-  const { id } = req.params;
-  const { name, email, password } = req.body;
-  try {
-    const user = await User.findByIdAndUpdate(
-      id,
-      { name, email, password },
-      { new: true }
-    );
-    res.json(user);
   } catch (error) {
     res.status(404).json({ message: 'User not found' });
   }
