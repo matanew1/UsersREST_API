@@ -1,37 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <link href="/css/updateUser.css" rel="stylesheet" type="text/css">
+<html>
+  <head>
     <title>Update User</title>
-</head>
-<body>
+    <link href="/css/updateUser.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <%- include("./header.ejs") %>
     <div class="container">
-        <h1>Update User</h1>
-        <form method="POST" action="/api/users/update/"+this.value>
-            <label for="users">Select a user:</label>
-            <select id="users" name="user_id" onchange="this.form.action='/api/users/update/'+this.value;
-             document.getElementById('name').value=this.options[this.selectedIndex].dataset.name;
-              document.getElementById('email').value=this.options[this.selectedIndex].dataset.email;
-               document.getElementById('password').value=this.options[this.selectedIndex].dataset.password;">
-              <% users.forEach(function(user) { %>
-                <option value="<%= user.id %>" data-name="<%= user.name %>" data-email="<%= user.email %>"
-                   data-password="<%= user.password %>">
-                   <%= user.name %>
-                </option>
-              <% }); %>
-            </select>
-            <br>
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" value="">
-            <br>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" value="">
-            <br>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" value="">
-            <br>
-            <input type="submit" value="Update User">
-        </form>
+      <h1>Update User</h1>
+      <form method="POST" action="/api/users/update/<%= this.value %>">
+        <div class="form-group">
+          <label for="users">Select a user:</label>
+          <select id="users" name="user_id" onchange="updateFormValues(this);">
+            <option value="" selected disabled>Select user name</option>
+            <% users.forEach(function(user) { %>
+              <option value="<%= user.id %>" data-name="<%= user.name %>" data-email="<%= user.email %>"
+                data-password="<%= user.password %>">
+                <%= user.name %>
+              </option>
+            <% }); %>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" class="form-input" value="">
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" class="form-input" value="">
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" class="form-input" value="">
+        </div>
+        <button type="submit" class="btn">Update User</button>
+      </form>
     </div>
-</body>
+    <script>
+      function updateFormValues(select) {
+        var nameInput = document.getElementById('name');
+        var emailInput = document.getElementById('email');
+        var passwordInput = document.getElementById('password');
+        var selectedOption = select.options[select.selectedIndex];
+        nameInput.value = selectedOption.dataset.name;
+        emailInput.value = selectedOption.dataset.email;
+        passwordInput.value = selectedOption.dataset.password;
+        var formAction = '/api/users/update/' + select.value;
+        select.form.action = formAction;
+      }
+    </script>
+    <%- include("./footer.ejs") %>
+  </body>
 </html>
