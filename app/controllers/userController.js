@@ -22,7 +22,7 @@ exports.updateUser = async (req, res) => {
       { new: true }
     );
     const users = await User.find();
-    res.render('updateUser', { user: user, users: users });
+    res.render('successUpdate', { user: user });
   } catch (error) {
     res.status(404).json({ message: 'User not found' });
   }
