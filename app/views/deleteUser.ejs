@@ -1,0 +1,49 @@
+<!-- views/deleteUser.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Delete Users</title>
+  <link href="/css/deleteUser.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <%- include("./header.ejs") %>
+    <div class="container">
+        <h1>Delete Users</h1>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Password</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% users.forEach(function(user) { %>
+            <tr>
+              <td><%= user.name %></td>
+              <td><%= user.email %></td>
+              <td><%= user.password %></td>
+              <td>
+                <form action="/api/users/delete/<%- user.id %>" method="POST">
+                    <button type="submit" class="btn">Delete</button>
+                </form>                                                                  
+              </td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+      <button onclick="location.href='/api/home'">Go to Home</button>
+      <% if (users.length > 0) { %>
+        <form action="/api/users/delete" method="POST">
+          <button type="submit" class="btn">Delete All Users</button>
+        </form>
+      <% } %>
+      <footer>
+        <%- include("./footer.ejs") %>
+      </footer>
+    </div>
+</body>
+</html>

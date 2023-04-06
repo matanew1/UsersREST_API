@@ -28,5 +28,5 @@ app.use('/api', userRoutes);
 app.use(express.static(__dirname + '/views'));
 
 app.listen(PORT, () => {
-  console.log(`https://localhost:${PORT}/api/home`);
+  console.log(`http://localhost:${PORT}/api/home`);
 }).name = 'USER RUN & LISTEN';

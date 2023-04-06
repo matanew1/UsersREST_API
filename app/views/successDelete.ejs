@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/successDelete.css" rel="stylesheet" type="text/css">
+    <%- include("./header.ejs") %>
+    <title>New User Added</title>
+  </head>
+  
+  <body>
+    <div class="container">
+      <% if (user) { %>
+        <h1>Deleted The User...</h1>
+        <h1>ID: <%- user.id %>!</h1>
+        <% } %>
+      <a href="/api/home" class="btn">Back to Home</a>
+      <span>&nbsp;</span> <!-- add some space between buttons -->
+      <a href="/api/users" class="btn">View All Users</a>
+      <% if (users.length > 0) { %>
+        <span>&nbsp;</span> <!-- add some space between buttons -->
+        <a href="/api/users/delete" class="btn">Delete a user</a>
+      <% } %>
+    </div>
+    <%- include("./footer.ejs") %>
+  </body>
+</html>

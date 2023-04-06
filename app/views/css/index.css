@@ -5,7 +5,7 @@ body {
 
 .container {
   margin: 50px auto;
-  max-width: 600px;
+  max-width: 400px;
   background-color: #b1cdd9;
   padding: 20px;
   border-radius: 10px;
@@ -20,12 +20,13 @@ h1 {
 
 nav {
   display: flex;
-  justify-content: center;
+  flex-direction: column; /* Change direction to vertical */
+  align-items: center; /* Center links horizontally */
 }
 
 a {
   margin: 0 10px;
-  font-size: 18px;
+  font-size: 20px;
   color: #ffffff;
   background-color: #008CBA;
   border-radius: 5px;

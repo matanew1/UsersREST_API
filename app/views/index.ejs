@@ -7,11 +7,13 @@
   </head>
   <body>  
     <%- include("./header.ejs") %>
+    <h1>Welcome to my app</h1>
     <main class="container">
-      <h1>Welcome to my app</h1>
       <nav>
-        <a href="/api/users">Get All Users</a>
-        <a href="/api/users/new">Add A New User</a>
+        <a href="/api/users">See All Users</a></p>
+        <a href="/api/users/new">Add A New User</a></p>
+        <a href="/api/users/edit">Edit A User</a></p>
+        <a href="/api/users/delete">Delete A User</a></p>
       </nav>
     </main>
     <%- include("./footer.ejs") %>

@@ -5,12 +5,11 @@ exports.createUser = async (req, res) => {
   const user = new User({ name, email, password });
   try {
     await user.save();
-    res.status(201).render('success', { user: user }); // Pass the "user" object to the success template
+    res.status(201).render('successAdd', { user: user }); // Pass the "user" object to the success template
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 };
-
 
 exports.getUserById = async (req, res) => {
   const { id } = req.params;
@@ -46,12 +45,33 @@ exports.updateUser = async (req, res) => {
   }
 };
 
-exports.deleteUser = async (req, res) => {
-  const { id } = req.params;
+exports.getAllUsersToDelete = async (req, res) => {
   try {
-    await User.findByIdAndDelete(id);
-    res.json({ message: 'User deleted successfully' });
+    const users = await User.find();
+    res.render('deleteUser', { users });
   } catch (error) {
     res.status(404).json({ message: 'User not found' });
   }
 };
+
+exports.deleteUser = async (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+  try {
+    const user = await User.findByIdAndDelete(id);
+    const users = await User.find();
+    res.status(201).render('successDelete', { user: user, users: users }); // Pass the "user" object to the success template
+  } catch (error) {
+    res.status(404).json({ message: 'User not found' });
+  }
+};
+
+exports.deleteAllUsers = async (req, res) => {
+  try {
+    await User.deleteMany({});
+    res.status(201).render('successDelete', { user: null }); // Pass the "user" object to the success template
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to delete all users' });
+  }
+};
+
