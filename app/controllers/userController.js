@@ -1,21 +1,6 @@
 const User = require('../models/userModel');
 
-// exports.loadUpdateForm = async (req, res) => {
-//   const users = await User.find();
-//   res.render('updateUser', { users: users });
-// };
-
-// exports.getIdUserToUpdate = async (req, res) => {
-//   const selectedUser = req.params;
-//   res.render('updateUser', { selectedUser: selectedUser });
-// };
-
-// exports.updateUserId = async (req, res) => {
-//   const selectedUserId = req.body.user_id;
-//   const selectedUser = await User.findById(selectedUserId);
-//   res.redirect(`/api/users/update/${selectedUserId}`);
-// }
-
+// update a specific user
 exports.updateUser = async (req, res) => {
   const id = req.params.user_id;
   const { name, email, password } = req.body;
@@ -32,6 +17,7 @@ exports.updateUser = async (req, res) => {
   }
 };
 
+// create a new user
 exports.createUser = async (req, res) => {
   const { name, email, password } = req.body;
   const user = new User({ name, email, password });
@@ -53,6 +39,7 @@ exports.getUserById = async (req, res) => {
   }
 };
 
+// load page of all users
 exports.getAllUsers = async (req, res) => {
   try {
     const users = await User.find();
@@ -62,6 +49,7 @@ exports.getAllUsers = async (req, res) => {
   }
 };
 
+// load page of all users to delete
 exports.getAllUsersToDelete = async (req, res) => {
   try {
     const users = await User.find();
@@ -71,6 +59,7 @@ exports.getAllUsersToDelete = async (req, res) => {
   }
 };
 
+// delete a specific user
 exports.deleteUser = async (req, res) => {
   const { id } = req.params;
   console.log(id);
@@ -83,6 +72,7 @@ exports.deleteUser = async (req, res) => {
   }
 };
 
+// delete all users
 exports.deleteAllUsers = async (req, res) => {
   try {
     await User.deleteMany({});
