@@ -1,6 +1,8 @@
-const mongoose = require('mongoose');
+const mongoose = require('../../config/db');
 
-const userSchema = new mongoose.Schema({
+const { Schema } = mongoose;
+
+const userSchema = new Schema({
   name: {
     type: String,
     required: true
