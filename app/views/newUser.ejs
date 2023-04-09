@@ -5,7 +5,9 @@
     <link href="/css/newUser.css" rel="stylesheet" type="text/css">
   </head>
   <body>
-    <%- include("./header.ejs") %>
+    <header>
+      <%- include("./header.ejs") %>
+    </header>
     <div class="container">
       <h1>New User</h1>
       <form method="POST" action="/api/users/new">

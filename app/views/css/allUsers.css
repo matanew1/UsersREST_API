@@ -37,15 +37,16 @@ button {
     display: block;
     margin-top: 20px;
     font-size: 18px;
-    color: #ffffff;
-    background-color: #008CBA;
+    color: #0c0808;
+    background-color: #41d5e9;
+    border: 2px solid #342e2e;
     border-radius: 5px;
     padding: 10px;
     text-decoration: none;
     width: 200px;
     margin-left: auto;
     margin-right: auto;
-    border: none;
+    
     cursor: pointer;
 }
 
@@ -56,24 +57,15 @@ button:hover {
 
 /* Style the background color */
 body {
-    font-family: Arial, sans-serif;
     background-color: #64b7d8;
-}
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+  }
 
 /* Style the container div */
 .container {
     max-height: 500px; /* Adjust the height as needed */
     overflow: auto;
-}
-
-/* Style the footer */
-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: #008CBA;
-    color: white;
-    text-align: center;
-    padding: 10px;
+    align-items: center;
+    padding: 30px;
 }
