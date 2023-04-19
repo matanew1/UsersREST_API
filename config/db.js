@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const mongoURI = 'mongodb+srv://matan:matan@cluster0.bgo3pus.mongodb.net/?retryWrites=true&w=majority';
+const mongoURI = 'mongodb://localhost:27017/usersDB';
 
 mongoose.connect(mongoURI, {
   useNewUrlParser: true,
