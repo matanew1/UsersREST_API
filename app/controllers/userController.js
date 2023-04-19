@@ -1,12 +1,18 @@
 const UserService = require("../services/userService")
 
 // *** Home page 
-exports.loadHomePage = async (req, res) => {
-  res.render('index');
+exports.loadHomePage = async (_req, res) => {
+  try {
+    res.status(200).render('index');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal server error');
+  }
 };
 
+
 // *** load page of update user
-exports.loadUpdateUserPage = async (req, res) => {
+exports.loadUpdateUserPage = async (_req, res) => {
   const users = await UserService.getUsers();
   res.render('updateUser', {users: users});
 }
@@ -24,23 +30,23 @@ exports.updateUser = async (req, res) => {
 };
 
 // *** load page of create user
-exports.loadCreateUserPage = async (req, res) => {
-  res.render('newUser');
+exports.loadCreateUserPage = async (_req, res) => {
+  res.status(200).render('newUser');
 };
 
 // *** create a new user
 exports.createUser = async (req, res) => {
   const { name, email, password } = req.body; 
   try {
-    await UserService.createUser(name, email, password);
-    res.status(201).render('successAdd'); // Pass the "user" object to the success template
+    const user = await UserService.createUser(name, email, password);
+    res.status(201).json(user).render('successAdd');
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 };
 
 // *** load page of all users
-exports.getAllUsers = async (req, res) => {
+exports.getAllUsers = async (_req, res) => {
   try {
     const users = await UserService.getUsers();
     res.render('allUsers', { users });
@@ -50,7 +56,7 @@ exports.getAllUsers = async (req, res) => {
 };
 
 // *** load page of all users to delete
-exports.getAllUsersToDelete = async (req, res) => {
+exports.getAllUsersToDelete = async (_req, res) => {
   try {
     const users = await UserService.getUsers();
     res.render('deleteUser', { users });
@@ -72,7 +78,7 @@ exports.deleteUser = async (req, res) => {
 };
 
 // *** delete all users
-exports.deleteAllUsers = async (req, res) => {
+exports.deleteAllUsers = async (_req, res) => {
   try {
     await UserService.deleteAllUsers();
     const users = await UserService.getUsers();
