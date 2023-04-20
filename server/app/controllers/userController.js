@@ -9,14 +9,16 @@ exports.loadHomePage = async (_req, res) => {
     res.status(500).send('Internal server error');
   }
 };
-
-// *** load page of update user
+// *** load page of update user - TEST
 exports.loadUpdateUserPage = async (_req, res) => {
-  const users = await UserService.getUsers();
-  res.render({users: users});
+  try {
+    res.status(200).json("Update page loaded successfully");
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal server error');
+  }
 }
-
-// *** update a specific user
+// *** update a specific user - TEST
 exports.updateUser = async (req, res) => {
   const id = req.params.id;
   const { name, email, password } = req.body;
@@ -27,7 +29,6 @@ exports.updateUser = async (req, res) => {
     res.status(404).json({ message: 'User not found' });
   }
 };
-
 // *** load page of create user - TEST
 exports.loadCreateUserPage = async (_req, res) => {
   try {
@@ -36,7 +37,6 @@ exports.loadCreateUserPage = async (_req, res) => {
     res.status(500).send('Internal server error');
   }  
 };
-
 // *** create a new user - TEST
 exports.createUser = async (req, res) => {
   const { name, email, password } = req.body; 
@@ -47,24 +47,22 @@ exports.createUser = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
-
-// *** load page of all users
+// *** load page of all users - TEST
 exports.getAllUsers = async (_req, res) => {
   try {
     const users = await UserService.getUsers();
-    res.render('allUsers', { users });
+    res.status(200).json(users );
   } catch (error) {
-    res.status(404).json({ message: 'User not found' });
+    res.status(500).send('Internal server error');
   }
 };
-
-// *** load page of all users to delete
+// *** load page of all users to delete - TEST
 exports.getAllUsersToDelete = async (_req, res) => {
   try {
     const users = await UserService.getUsers();
-    res.render('deleteUser', { users });
+    res.status(200).json(users );
   } catch (error) {
-    res.status(404).json({ message: 'User not found' });
+    res.status(500).send('Internal server error');
   }
 };
 
@@ -80,12 +78,12 @@ exports.deleteUser = async (req, res) => {
   }
 };
 
-// *** delete all users
+// *** delete all users - TEST
 exports.deleteAllUsers = async (_req, res) => {
   try {
     await UserService.deleteAllUsers();
     const users = await UserService.getUsers();
-    res.status(201).render('successDelete', { user: null, users: users }); // Pass the "user" object to the success template
+    res.status(201).json(users);
   } catch (error) {
     res.status(500).json({ message: 'Failed to delete all users' });
   }

@@ -18,15 +18,15 @@ router.get('/users/delete',userController.getAllUsersToDelete);
 router.get('/users/update', userController.loadUpdateUserPage);
 
 // update a specific user
-router.post('/users/update/:id', userController.updateUser);
+router.put('/users/update/:id', userController.updateUser);
 
 // create a new user
 router.post('/users/new', userController.createUser);
 
 // delete a specific user
-router.post('/users/delete/:id', userController.deleteUser);
+router.delete('/users/delete/:id', userController.deleteUser);
 
 // delete all users
-router.post('/users/delete', userController.deleteAllUsers);
+router.delete('/users/delete', userController.deleteAllUsers);
 
 module.exports = router;
