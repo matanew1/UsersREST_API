@@ -18,13 +18,13 @@ exports.loadUpdateUserPage = async (_req, res) => {
     res.status(500).send('Internal server error');
   }
 }
-// *** update a specific user - TEST
+// *** update a specific user 
 exports.updateUser = async (req, res) => {
   const id = req.params.id;
   const { name, email, password } = req.body;
   try {
     const user = await UserService.updateUser(id, name, email, password);
-    res.render('successUpdate', { user: user });
+    res.status(200).json(user);
   } catch (error) {
     res.status(404).json({ message: 'User not found' });
   }
@@ -66,13 +66,13 @@ exports.getAllUsersToDelete = async (_req, res) => {
   }
 };
 
-// *** delete a specific user
+// *** delete a specific user - TEST
 exports.deleteUser = async (req, res) => {
   const { id } = req.params;
   try {
     const user = await UserService.getUserByIdAndDelete(id);
     const users = await UserService.getUsers();
-    res.status(201).render('successDelete', { user: user, users: users }); // Pass the "user" object to the success template
+    res.status(201).json(user); 
   } catch (error) {
     res.status(404).json({ message: 'User not found' });
   }
