@@ -1,53 +1,89 @@
+.Users {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f7f7f7;
+}
+
+.Users main {
+  width: 80%;
+  max-width: 1500px;
+  text-align: center;
+  overflow-y: hidden;
+  min-height: 100vh;
+}
+
+
+.Users h1 {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+}
+
 table {
-    border-collapse: collapse;
-    width: 100%;
-    max-width: 800px;
-    margin: 20px auto;
+  background-color: #ffffff;
+  border-collapse: collapse;
+  width: 100%;
+  margin: 20px auto;
+  max-width: 1200px;
+}
+
+thead {
+  background-color: #eee;
+  font-weight: bold;
+}
+
+th,td {
+  background-color: #a9cad7;
+  padding: 10px;
+  text-align: left;
+  border: 3px solid #000000;
+}
+
+td:last-child {
+  position: relative;
+}
+
+td:last-child button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 5px 10px;
+  background-color: #f7f7f7;
+  border: 3px solid #060a0c;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+td:last-child button:focus {
+  outline: none;
+}
+
+button {
+  font-size: 1.2rem;
+  padding: 1rem;
+  background-color: #f7f7f7;
+  color: #060a0c;
+  border: 3px solid #060a0c;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  justify-content: center;
+  align-items: center;
+  min-width: 80px;
+}
+
+button:hover {
+  background-color: #3e8e41;
+}
+
+@media screen and (max-width: 600px) {
+  .Users main {
+    width: 90%;
   }
-  
-  thead {
-    background-color: #eee;
-    font-weight: bold;
+
+  .Users h1 {
+    font-size: 2rem;
   }
-  
-  th,
-  td {
-    padding: 10px;
-    text-align: left;
-    border: 1px solid #ddd;
-  }
-  
-  td:last-child {
-    position: relative;
-  }
-  
-  td:last-child button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 10px;
-    padding: 5px 10px;
-    background-color: #eee;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  td:last-child button:focus {
-    outline: none;
-  }
-  
-  button {
-    padding: 10px 20px;
-    background-color: #4caf50;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-  }
-  
-  button:hover {
-    background-color: #3e8e41;
-  }
-  
+}

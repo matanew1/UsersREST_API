@@ -1,10 +1,8 @@
-import Header from '../header/header';
-import Footer from '../footer/footer';
+import "./Home.css";
 
 function Home() {
   return (
     <div className="Home">
-      <Header />
       <main>
         <h1>User Management</h1>
         <nav>
@@ -16,7 +14,6 @@ function Home() {
           </ul>
         </nav>
       </main>
-      <Footer />
     </div>
   );
 }
