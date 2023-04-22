@@ -8,10 +8,14 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install
+RUN npm ci
+RUN npm install mongoose
 
 # Copy the server code to the image
 COPY . .
+
+# Build the server code
+RUN npm run build
 
 # Set the command to start the server
 CMD [ "npm", "start" ]
