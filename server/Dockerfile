@@ -1,8 +1,17 @@
+# Use Node.js v14 as the base image
 FROM node:14
-WORKDIR /server
-COPY . /server/
-RUN npm run build
 
-EXPOSE 3000
+# Set the working directory to /app
+WORKDIR /app
 
-CMD npm start
+# Copy package.json and package-lock.json to the image
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install
+
+# Copy the server code to the image
+COPY . .
+
+# Set the command to start the server
+CMD [ "npm", "start" ]
