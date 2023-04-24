@@ -9,7 +9,6 @@ COPY package*.json ./
 
 # Install dependencies
 RUN npm ci
-RUN npm install mongoose
 
 # Copy the server code to the image
 COPY . .
@@ -18,4 +17,5 @@ COPY . .
 RUN npm run build
 
 # Set the command to start the server
-CMD [ "npm", "start" ]
+CMD [ "node", "server.js" ]
+

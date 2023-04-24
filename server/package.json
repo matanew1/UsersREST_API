@@ -2,11 +2,11 @@
   "name": "rest",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
     "test": "jest --detectOpenHandles",
     "start": "node server.js",
-    "build": "npm run build"
+    "build": "echo 'Nothing to build for a Node.js project with an Express API'"
   },
   "keywords": [],
   "author": "",
