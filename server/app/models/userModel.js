@@ -1,4 +1,4 @@
-const mongoose = require('./db.js');
+const mongoose = require('../../config/db');
 const bcrypt = require("bcryptjs");
 
 const { Schema } = mongoose;

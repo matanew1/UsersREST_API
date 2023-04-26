@@ -2,7 +2,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
   background-color: #f7f7f7;
 }
 
@@ -10,8 +9,6 @@
   width: 80%;
   max-width: 1500px;
   text-align: center;
-  overflow-y: hidden;
-  min-height: 100vh;
 }
 
 
@@ -22,7 +19,6 @@
 
 table {
   background-color: #ffffff;
-  border-collapse: collapse;
   width: 100%;
   margin: 20px auto;
   max-width: 1200px;

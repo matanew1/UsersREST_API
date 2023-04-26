@@ -4,6 +4,8 @@ import Home from './components/home/Home';
 import Users from './components/users/users';
 import Header from './components/header/header';
 import Footer from './components/footer/footer';
+import AddUser from './components/users/AddUser';
+import Success from './components/users/Success';
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
         <Routes>
           <Route path='/api/home' element={<Home/>}/>
           <Route path='/api/users' element={<Users/>}/>
+          <Route path='/api/users/new' element={<AddUser/>}/>
+          <Route path='/api/users/new/success' element={<Success/>}/>
         </Routes>     
       </BrowserRouter>  
       <Footer/>   
