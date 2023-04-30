@@ -40,7 +40,7 @@ function AddUser() {
         </div>
         <div className="form-group">
           <label htmlFor="password">Password:</label>
-          <input type="password" id="password" name="password" className="form-input" required
+          <input maxLength="16" type="password" id="password" name="password" className="form-input" required
             value={password} onChange={(event) => setPassword(event.target.value)} />
         </div>
         <button type="submit" className="btn">Submit</button>

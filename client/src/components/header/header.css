@@ -17,6 +17,11 @@ img {
   border-radius: 30%;
 }
 
+img:hover{
+  background-color: #6dcba2;
+  color: #f7f7f7;
+}
+
 .header-container header {
   background-color: #46908d;
   color: #200c0c;

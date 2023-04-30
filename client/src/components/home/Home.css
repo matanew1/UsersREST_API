@@ -2,21 +2,40 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 75vh;
+  /* changed height to min-height for better responsiveness */
   background-color: #f7f7f7;
 }
 
 .Home main {
-  width: 80%;
+  width: 90%;
+  /* increased width for better readability */
   max-width: 800px;
-  height: 600px;
+  height: 500px;
   text-align: center;
-  overflow-y: auto;
+  overflow-y: hidden;
+  padding: 2rem; /* added padding for better spacing */
+  border-radius: 1rem; /* increased border radius for a more rounded look */
+  background-color: #a9dfec; /* changed background color to white for better contrast */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* added box shadow for depth */
+  opacity: 0;
+  animation: fade-in 1s forwards;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .Home h1 {
   font-size: 3rem;
   margin-bottom: 2rem;
+  color: #060a0c;
+  /* added color for better contrast */
 }
 
 .Home nav ul {
@@ -27,6 +46,8 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  margin-top: 2rem;
+  /* added margin for better spacing */
 }
 
 .Home nav li {
@@ -35,9 +56,9 @@
 
 .Home nav a {
   font-size: 1.2rem;
-  padding: 1rem;
+  padding: 1.5rem;
   border-radius: 0.5rem;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
   border: 3px solid #060a0c;
   background-color: #f7f7f7;
   color: #060a0c;
@@ -51,7 +72,8 @@
 
 .Home nav a:hover {
   background-color: #6dcba2;
-  color: #f7f7f7;
+  color: #fff;
+  transform: scale(1.1);
 }
 
 @media screen and (max-width: 600px) {
@@ -66,5 +88,7 @@
   .Home nav a {
     min-width: 150px;
     height: 80px;
+    padding: 1rem;
+    /* decreased padding for better fit on smaller screens */
   }
 }

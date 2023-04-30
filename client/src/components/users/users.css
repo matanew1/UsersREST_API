@@ -1,85 +1,65 @@
 .Users {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #a9dfec;
+  border-radius: 10px;
+  margin-bottom: 6%;
+  margin-top: 0.3%;
+  align-items: flex-start;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #f7f7f7;
+  flex-direction: column;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* added box shadow for depth */
 }
 
-.Users main {
-  width: 80%;
-  max-width: 1500px;
+.sort_opt {
+  margin: 2%;
+  padding: 10px;
+}
+
+h2 {
+  margin: 1% 0;
+  padding: 0 20px;
+}
+
+
+h1 {
   text-align: center;
-}
-
-
-.Users h1 {
-  font-size: 3rem;
-  margin-bottom: 2rem;
+  margin-bottom: 30px;
 }
 
 table {
-  background-color: #ffffff;
   width: 100%;
-  margin: 20px auto;
-  max-width: 1200px;
+  border-collapse: collapse;
 }
 
-thead {
-  background-color: #eee;
+th, td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  height: 50px; /* add this line to make the height of the cells 50px */
+}
+
+
+th {
+  background-color: #a9dfec;
   font-weight: bold;
 }
 
-th,td {
-  background-color: #a9cad7;
-  padding: 10px;
-  text-align: left;
-  border: 3px solid #000000;
-}
-
-td:last-child {
-  position: relative;
-}
-
-td:last-child button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  padding: 5px 10px;
-  background-color: #f7f7f7;
-  border: 3px solid #060a0c;
-  border-radius: 0.5rem;
-  cursor: pointer;
-}
-
-td:last-child button:focus {
-  outline: none;
+td:nth-child(3) {
+  font-family: monospace;
 }
 
 button {
-  font-size: 1.2rem;
-  padding: 1rem;
-  background-color: #f7f7f7;
-  color: #060a0c;
-  border: 3px solid #060a0c;
-  border-radius: 0.5rem;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #1abc9c;
+  color: #fff;
   cursor: pointer;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-  justify-content: center;
-  align-items: center;
-  min-width: 80px;
+  transition: all 0.3s ease;
 }
 
 button:hover {
-  background-color: #3e8e41;
-}
-
-@media screen and (max-width: 600px) {
-  .Users main {
-    width: 90%;
-  }
-
-  .Users h1 {
-    font-size: 2rem;
-  }
+  background-color: #16a085;
 }

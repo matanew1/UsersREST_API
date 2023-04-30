@@ -1,7 +1,7 @@
 /* Global styles */
 body {
-  background-color: rgb(171, 187, 187);
-  font-family: Arial, sans-serif;
+  background-color: #f7f7f7;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
 }
