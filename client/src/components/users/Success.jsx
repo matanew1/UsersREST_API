@@ -1,10 +1,12 @@
 import './Success.css';
 
-function Success() {
+function Success(props) {
+  
+  const {message} = props;
   return (
     <div className="Success">
       <main>
-        <h1>Added New User...</h1>
+        <h1>{message}</h1>
         <nav>
           <ul>
             <li><a href="/api/users">See All Users</a></li>
