@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import './users.css';
-import Sort from '../Operations/Sort';
+import './Users.css';
+import Sort from '../operations/Sort';
 
 function Users() {
   const [users, setUsers] = useState([]);
