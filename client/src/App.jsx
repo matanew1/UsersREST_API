@@ -1,13 +1,13 @@
 import './App.css';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Home from './components/home/Home';
-import Users from './components/users/users';
+import Users from './components/users/read/users';
 import Header from './components/header/header';
 import Footer from './components/footer/footer';
-import AddUser from './components/users/AddUser';
+import AddUser from './components/users/Create/AddUser';
 import Success from './components/users/Success';
-import UpdateUser from './components/users/UpdateUser';
-import DeleteUser from './components/users/DeleteUser';
+import UpdateUser from './components/users/Update/UpdateUser';
+import DeleteUser from './components/users/Delete/DeleteUser';
 
 function App() {
   return (

@@ -1,4 +1,4 @@
-import './UpdateUser.css';
+import './DeleteUser.css';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
