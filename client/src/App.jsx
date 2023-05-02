@@ -8,6 +8,7 @@ import AddUser from './components/users/create/AddUser';
 import Success from './components/users/success/Success';
 import UpdateUser from './components/users/update/UpdateUser';
 import DeleteUser from './components/users/delete/DeleteUser';
+import AboutPage from './components/header/about/AboutPage';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route path='/api/home' element={<Home/>}/>
           <Route path='/api/users' element={<Users/>}/>
+          <Route path='/api/about' element={<AboutPage/>}/>
           <Route path='/api/users/new' element={<AddUser/>}/>
           <Route path='/api/users/update' element={<UpdateUser/>}/>
           <Route path='/api/users/delete' element={<DeleteUser/>}/>
