@@ -1,6 +1,7 @@
 import './App.css';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import Home from './components/home/Home';
+import Profile from './components/profile/Profile';
+import Home from './components/home/Home'
 import Users from './components/users/read/Users';
 import Header from './components/header/header';
 import Footer from './components/footer/footer';
@@ -16,15 +17,18 @@ function App() {
       <Header/>
       <BrowserRouter>
         <Routes>
-          <Route path='/api/home' element={<Home/>}/>
-          <Route path='/api/users' element={<Users/>}/>
-          <Route path='/api/about' element={<AboutPage/>}/>
-          <Route path='/api/users/new' element={<AddUser/>}/>
-          <Route path='/api/users/update' element={<UpdateUser/>}/>
-          <Route path='/api/users/delete' element={<DeleteUser/>}/>
-          <Route path='/api/users/new/success' element={<Success message='Added new user'/>}/>
-          <Route path='/api/users/update/success' element={<Success message='Updated user'/>}/>
-          <Route path='/api/users/delete/success' element={<Success message='Deleted user'/>}/>
+          <Route path='/' element={<Home/>}/>
+          {/* <Route path='/login' element={<Login/>}/> */}
+          {/* <Route path='/conntact' element={<Contact/>}/> */}
+          <Route path='/profile/home' element={<Profile/>}/>
+          <Route path='/profile/users' element={<Users/>}/>
+          <Route path='/about' element={<AboutPage/>}/>
+          <Route path='/profile/users/new' element={<AddUser/>}/>
+          <Route path='/profile/users/update' element={<UpdateUser/>}/>
+          <Route path='/profile/users/delete' element={<DeleteUser/>}/>
+          <Route path='/profile/users/new/success' element={<Success message='Added new user'/>}/>
+          <Route path='/profile/users/update/success' element={<Success message='Updated user'/>}/>
+          <Route path='/profile/users/delete/success' element={<Success message='Deleted user'/>}/>
         </Routes>     
       </BrowserRouter>  
       <Footer/>   
