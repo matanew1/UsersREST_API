@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Home.css';
 
 const Home = () => {
+  // eslint-disable-next-line no-unused-vars
   const [cards, setCards] = useState([
     {
       title: 'ADD USER',
