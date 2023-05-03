@@ -65,7 +65,6 @@ exports.getAllUsersToDelete = async (_req, res) => {
     res.status(500).send('Internal server error');
   }
 };
-
 // *** delete a specific user - TEST
 exports.deleteUser = async (req, res) => {
   const { id } = req.params;
@@ -77,7 +76,6 @@ exports.deleteUser = async (req, res) => {
     res.status(404).json({ message: 'User not found' });
   }
 };
-
 // *** delete all users - TEST
 exports.deleteAllUsers = async (_req, res) => {
   try {
@@ -88,4 +86,13 @@ exports.deleteAllUsers = async (_req, res) => {
     res.status(500).json({ message: 'Failed to delete all users' });
   }
 };
+exports.loginAdmin = async (req, res) => {
+    const { email, password, isAdmin } = req.body; 
+    try {
+      const user = await UserService.loginAdmin(email, password, isAdmin);
+      res.status(201).json(user);
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
+}
 

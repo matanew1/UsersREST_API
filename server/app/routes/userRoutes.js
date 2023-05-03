@@ -23,10 +23,14 @@ router.put('/users/update/:id', userController.updateUser);
 // create a new user
 router.post('/users/new', userController.createUser);
 
+// login for admin user
+router.post('/login', userController.loginAdmin);
+
 // delete a specific user
 router.delete('/users/delete/:id', userController.deleteUser);
 
 // delete all users
 router.delete('/users/delete', userController.deleteAllUsers);
+
 
 module.exports = router;
