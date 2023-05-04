@@ -7,6 +7,10 @@
     transform: translate(0%, 20%);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* added box shadow for depth */
   }
+
+  p {
+    color: red;
+  }
   
   h1 {
     text-align: center;

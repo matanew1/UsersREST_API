@@ -9,12 +9,14 @@ import AddUser from './components/users/create/AddUser';
 import Success from './components/users/success/Success';
 import UpdateUser from './components/users/update/UpdateUser';
 import DeleteUser from './components/users/delete/DeleteUser';
-import AboutPage from './components/header/about/AboutPage';
-import Login from './components/Login';
+import AboutPage from './components/about/AboutPage';
+import Login from './components/login/Login';
+import { AuthProvider } from './components/login/AuthContext'
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
   return (
-    <div className="App">
+    <AuthProvider>
       <Header/>
       <BrowserRouter>
         <Routes>
@@ -33,7 +35,7 @@ function App() {
         </Routes>     
       </BrowserRouter>  
       <Footer/>   
-    </div>
+    </AuthProvider>
   );
 }
 

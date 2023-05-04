@@ -1,26 +1,32 @@
 import './Login.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from './AuthContext';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [wrongDetails, setWrongDetails] = useState(false);
   const navigate = useNavigate();
+  const { toggleLogin } = useContext(AuthContext);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetch('/login', {
+    fetch('/api/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password }),
     }).then(response => {
-        if (response.ok) {
-          console.log('User logged in successfully');
-          navigate('/profile/home');
-        } else {
-          throw new Error('Error log in user');
-        }
-      })
+      if (response.ok) {
+        console.log('User logged in successfully');
+        navigate('/profile/home');
+        toggleLogin(true);
+      } else {
+        setWrongDetails(true);
+        throw new Error('Error log in user');
+      }
+    })
   };
 
   return (
@@ -36,6 +42,7 @@ function Login() {
           <label htmlFor="password">Password:</label>
           <input maxLength="16" type="password" id="password" name="password" className="form-input" required
             value={password} onChange={(event) => setPassword(event.target.value)} />
+          {wrongDetails ? (<p>Wrong details, try again...</p>) : (<p></p>)}
         </div>
         <button type="submit" className="btn">Submit</button>
       </form>
