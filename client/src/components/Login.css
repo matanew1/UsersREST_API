@@ -1,0 +1,52 @@
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #a9dfec;
+    padding: 20px;
+    border-radius: 10px;
+    transform: translate(0%, 20%);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* added box shadow for depth */
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .form-input {
+    display: block;
+    width: 96%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #1abc9c;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .btn:hover {
+    background-color: #16a085;
+  }
+  

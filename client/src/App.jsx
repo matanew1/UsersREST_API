@@ -10,6 +10,7 @@ import Success from './components/users/success/Success';
 import UpdateUser from './components/users/update/UpdateUser';
 import DeleteUser from './components/users/delete/DeleteUser';
 import AboutPage from './components/header/about/AboutPage';
+import Login from './components/Login';
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home/>}/>
-          {/* <Route path='/login' element={<Login/>}/> */}
+          <Route path='/login' element={<Login/>}/>
           {/* <Route path='/conntact' element={<Contact/>}/> */}
           <Route path='/profile/home' element={<Profile/>}/>
           <Route path='/profile/users' element={<Users/>}/>
