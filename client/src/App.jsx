@@ -1,7 +1,7 @@
 import './App.css';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Profile from './components/profile/Profile';
-import Home from './components/home/Home'
+import Home from './components/home/Home';
 import Users from './components/users/read/Users';
 import Header from './components/header/header';
 import Footer from './components/footer/footer';
@@ -11,8 +11,9 @@ import UpdateUser from './components/users/update/UpdateUser';
 import DeleteUser from './components/users/delete/DeleteUser';
 import AboutPage from './components/about/AboutPage';
 import Login from './components/login/Login';
-import { AuthProvider } from './components/login/AuthContext'
-import PrivateRoute from './components/PrivateRoute';
+import { AuthProvider } from './components/login/AuthContext';
+import Authentication from './components/Authentication';
+
 
 function App() {
   return (
@@ -22,16 +23,19 @@ function App() {
         <Routes>
           <Route path='/' element={<Home/>}/>
           <Route path='/login' element={<Login/>}/>
-          {/* <Route path='/conntact' element={<Contact/>}/> */}
-          <Route path='/profile/home' element={<Profile/>}/>
-          <Route path='/profile/users' element={<Users/>}/>
           <Route path='/about' element={<AboutPage/>}/>
-          <Route path='/profile/users/new' element={<AddUser/>}/>
-          <Route path='/profile/users/update' element={<UpdateUser/>}/>
-          <Route path='/profile/users/delete' element={<DeleteUser/>}/>
-          <Route path='/profile/users/new/success' element={<Success message='Added new user'/>}/>
-          <Route path='/profile/users/update/success' element={<Success message='Updated user'/>}/>
-          <Route path='/profile/users/delete/success' element={<Success message='Deleted user'/>}/>
+
+          <Route path='/profile' element={<Authentication><Profile/></Authentication>}>
+            <Route path='home' element={<Profile/>}/>
+            <Route path='users' element={<Users/>}/>
+            <Route path='users/new' element={<AddUser/>}/>
+            <Route path='users/update' element={<UpdateUser/>}/>
+            <Route path='users/delete' element={<DeleteUser/>}/>
+            <Route path='users/new/success' element={<Success message='Added new user'/>}/>
+            <Route path='users/update/success' element={<Success message='Updated user'/>}/>
+            <Route path='users/delete/success' element={<Success message='Deleted user'/>}/>
+          </Route>
+
         </Routes>     
       </BrowserRouter>  
       <Footer/>   
@@ -40,3 +44,4 @@ function App() {
 }
 
 export default App;
+
