@@ -1,65 +1,71 @@
+const Admin = require("../models/adminModel");
 const User = require("../models/userModel");
-const bcrypt = require("bcryptjs");
 
 class UserService  {
     static async deleteAllUsers() {
         await User.deleteMany({});
     }
-    static async getUserByIdAndDelete(id) {
+    static async getUserById(id, adminId) {
+      try {
+        const admin = await Admin.findById(adminId).populate('users');
+        const user = admin.users.find(user => user._id.equals(id));
+        if (!user) {
+          throw new Error('User not found in admin list');
+        } 
+        return user;
+      } catch (error) {
+        throw error;
+      }
+    } 
+    static async getUserByIdAndDelete(id, adminId) {
         try {
-            const user = await User.findByIdAndDelete(id);
-            return user;
+          const admin = await Admin.findById(adminId).populate('users');
+          const userToDelete = admin.users.find(user => user._id.equals(id));
+          if (!userToDelete) {
+            throw new Error('User not found in admin list');
+          }
+          const deletedUser = await User.findByIdAndDelete(id);
+          admin.users = admin.users.filter(user => !user._id.equals(id));
+          await admin.save();
+          return deletedUser;
         } catch (error) {
-            throw error;
+          throw error;
         }
-    }
-    static async createUser(name, email, password, isAdmin) {
+      }    
+    static async createUser(name, email, password, adminId) {
         try {
-            const newUser = new User({ name, email, password, isAdmin});
-            return await newUser.save();
+          const admin = await Admin.findById(adminId);
+          const newUser = new User({ name, email, password });
+          if (!admin) {
+            throw new Error('Admin not found');
+          }
+          admin.users.push(newUser._id);
+          await newUser.save();
+          await admin.save();
+          return newUser;
         } catch (error) {
-            throw error;
+          throw error;
         }
-    }
-    static async getUsers() {
+      }
+    static async updateUser(id, name, email, password, adminId) {
         try {
-            return await User.find();
-        } catch (error) {
-            throw error;
-        }        
-    }
-    static async updateUser(id, name, email, password) {
-        try {
-            const user = await User.findByIdAndUpdate(
-                id,
-                { name, email, password },
-                { new: true }
+          const admin = await Admin.findById(adminId).populate('users');
+          const userToUpdate = admin.users.find(user => user._id.equals(id));
+          if (!userToUpdate) {
+            throw new Error('User not found in admin list');
+          }
+          const updateUser = await User.findByIdAndUpdate(
+            id,
+            { name, email, password },
+            { new: true }
             );
-            return user;
+          admin.users = admin.users.filter(user => !user._id.equals(id));
+          await admin.save();
+          return updateUser;
         } catch (error) {
             throw error;
         }
     }    
-
-    static async loginAdmin(email, password, isAdmin) {
-        try {
-            const user = await User.findOne({ email });
-            if (!user) {
-                throw new Error('Invalid email or password');
-            }
-            const isPasswordMatch = await bcrypt.compare(password, user.password);
-            if (!isPasswordMatch) {
-                throw new Error('Invalid email or password');
-            }
-            if (isAdmin && !user.isAdmin) {
-                throw new Error('Unauthorized access');
-            }
-            return user;
-        } catch (error) {
-            throw error;
-        }
-    }
-    
 }
 
 module.exports = UserService;
