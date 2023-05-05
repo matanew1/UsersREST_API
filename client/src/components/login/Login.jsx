@@ -21,6 +21,7 @@ function Login() {
       if (response.ok) {
         response.json().then(data => {
           const adminId = data._id;
+          localStorage.setItem('adminId',adminId);
           console.log('User logged in successfully');
           if (adminId) {
             navigate(`/${adminId}/home`);

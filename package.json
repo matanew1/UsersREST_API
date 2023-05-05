@@ -2,6 +2,7 @@
   "dependencies": {
     "csurf": "^1.11.0",
     "express-session": "^1.17.3",
+    "nodemailer": "^6.9.1",
     "react-router-dom": "^6.11.1"
   }
 }

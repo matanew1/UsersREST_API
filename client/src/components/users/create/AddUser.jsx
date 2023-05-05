@@ -16,17 +16,17 @@ function AddUser() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, email, password }),
     }).then(response => {
-        if (response.ok) {
-          console.log('User added successfully');
-          navigate(`/${adminId}/users/new/success`);
-        } else {
-          throw new Error('Error adding user');
-        }
-      })
+      if (response.ok) {
+        console.log('User added successfully');
+        navigate(`/${adminId}/users/new/success`);
+      } else {
+        throw new Error('Error adding user');
+      }
+    })
   };
 
   return (
-    <div className="container">
+    <div className="container-create">
       <h1>New User</h1>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
@@ -45,7 +45,7 @@ function AddUser() {
             value={password} onChange={(event) => setPassword(event.target.value)} />
         </div>
         <button type="submit" className="btn">Submit</button>
-      </form><br/>
+      </form><br />
       <Link to={`/${adminId}/home`} className="button">Go Back</Link>
     </div>
   );

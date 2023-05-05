@@ -1,5 +1,6 @@
 const Admin = require("../models/adminModel");
 const bcrypt = require("bcryptjs");
+const nodemailer = require("nodemailer");
 
 class AdminService  {
     static async getUsers(adminId) {

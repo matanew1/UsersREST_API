@@ -8,6 +8,18 @@ export const AuthProvider = ({ children }) => {
   });
 
   useEffect(() => {
+    const handleUnload = () => {
+      localStorage.removeItem('isLoggedIn');
+    };
+
+    window.addEventListener('beforeunload', handleUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleUnload);
+    };
+  }, []);
+
+  useEffect(() => {
     localStorage.setItem('isLoggedIn', isLoggedIn);
   }, [isLoggedIn]);
 

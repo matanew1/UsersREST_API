@@ -9,7 +9,7 @@ function Header() {
   const handleLogout = () => {
     toggleLogin(false);
   }
-
+  const adminId = localStorage.getItem('adminId');
   return (
     <div className='header-container'>
       <header>
@@ -18,17 +18,18 @@ function Header() {
           <ul className='header-ul'>
             {isLoggedIn ? (
               <>
+                <Link to={`/${adminId}/home`}>Dashboard</Link>
                 <Link onClick={handleLogout} to="/">Logout</Link>
               </>
             ) : (
               <>
+                <Link to="/login">Login</Link>
                 <Link to="/">Home</Link>
                 <Link to="/sign-up">Sign up</Link>
-                <Link to="/login">Login</Link>
                 <Link to="/about">About</Link>
-                <Link to="/contact">Contact</Link>
               </>
             )}
+            <Link to="mailto:matanew1@gmail.com">Contact</Link>
           </ul>
         </nav>
       </header>

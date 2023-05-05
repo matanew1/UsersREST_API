@@ -49,7 +49,7 @@ function UpdateUser() {
   }
 
   return (
-    <div className="container">
+    <div className=".container-update">
       <h1>Update User</h1>
         <select id="selected_user" onChange={selectUser} value={currentUser.email || ''}>
           <option value="">CHOOSE USER TO UPDATE</option>

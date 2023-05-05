@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import './Profile.css';
 
 function Profile() {
@@ -10,10 +10,10 @@ function Profile() {
         <h1>User Management</h1>
         <nav>
           <ul>
-            <li><a href={`/${adminId}/users`}>See All Users</a></li>
-            <li><a href={`/${adminId}/users/new`}>Add A New User</a></li>
-            <li><a href={`/${adminId}/users/update`}>Update A User</a></li>
-            <li><a href={`/${adminId}/users/delete`}>Delete A User</a></li>
+            <Link to={`/${adminId}/users`}>See All Users</Link>
+            <Link to={`/${adminId}/users/new`}>Add A New User</Link>
+            <Link to={`/${adminId}/users/update`}>Update A User</Link>
+            <Link to={`/${adminId}/users/delete`}>Delete A User</Link>
           </ul>
         </nav>
       </main>
