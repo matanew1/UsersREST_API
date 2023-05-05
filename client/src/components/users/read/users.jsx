@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import './Users.css';
 import Sort from '../operations/Sort';
 
@@ -73,6 +73,7 @@ function Users() {
           </tbody>
         </table>
       </main>
+      <Link to={`/${adminId}/home`} className="button">Go Back</Link>
     </div>
   );
 }

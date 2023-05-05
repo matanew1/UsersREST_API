@@ -17,10 +17,10 @@ function Header() {
         <img src="/logo.jpg" alt="LOGO" />
         <nav>
           <ul className='header-ul'>
+            {console.log(isLoggedIn)}
             {isLoggedIn ? (
               <>
                 <li><a onClick={handleLogout} href="/">Logout</a></li>
-                <li><a href={`/${adminId}/home`}>Dashboard</a></li>
               </>
             ) : (
               <>
@@ -37,5 +37,6 @@ function Header() {
     </div>
   );
 }
+
 
 export default Header;

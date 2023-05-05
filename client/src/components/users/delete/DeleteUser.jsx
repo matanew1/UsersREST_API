@@ -1,6 +1,6 @@
 import './DeleteUser.css';
 import { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 
 function DeleteUser() {
   const [users, setUsers] = useState([]);
@@ -58,7 +58,8 @@ function DeleteUser() {
             {console.log("currentUser: ",currentUser.name)}
             
             <button type="submit" className="btn">Submit</button>
-        </form>
+        </form><br/>
+        <Link to={`/${adminId}/home`} className="button">Go Back</Link>
     </div>
   );
 }

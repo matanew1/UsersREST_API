@@ -11,6 +11,20 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* added box shadow for depth */
 }
 
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #1abc9c;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #16a085;
+}
+
 .sort_opt {
   padding: 20px;
   margin: 2%;

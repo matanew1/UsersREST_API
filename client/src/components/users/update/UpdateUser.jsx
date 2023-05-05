@@ -1,6 +1,6 @@
 import './UpdateUser.css';
 import { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 
 function UpdateUser() {
   const [users, setUsers] = useState([]);
@@ -77,7 +77,8 @@ function UpdateUser() {
             value={password || currentUser.password}  onChange={(event) => setPassword(event.target.value)} />
         </div>
         <button type="submit" className="btn">Submit</button>
-      </form>
+      </form><br/>
+      <Link to={`/${adminId}/home`} className="button">Go Back</Link>
     </div>
   );
 }

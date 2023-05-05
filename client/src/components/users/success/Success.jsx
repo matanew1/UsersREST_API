@@ -1,5 +1,5 @@
 import './Success.css';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 function Success(props) {
 
@@ -13,7 +13,8 @@ function Success(props) {
         <h1>{message}</h1>
         <nav>
           <ul>
-            <li><a href={`/${adminId}/users`}>See All Users</a></li>
+            <Link to={`/${adminId}/users`} className="button">See All Users</Link>
+            <Link to={`/${adminId}/home`} className="button">Go Back</Link>
           </ul>
         </nav>
       </main>

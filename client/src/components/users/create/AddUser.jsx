@@ -1,6 +1,6 @@
 import './AddUser.css';
 import { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 
 function AddUser() {
   const [name, setName] = useState('');
@@ -45,7 +45,8 @@ function AddUser() {
             value={password} onChange={(event) => setPassword(event.target.value)} />
         </div>
         <button type="submit" className="btn">Submit</button>
-      </form>
+      </form><br/>
+      <Link to={`/${adminId}/home`} className="button">Go Back</Link>
     </div>
   );
 }

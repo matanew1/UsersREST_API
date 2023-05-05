@@ -27,7 +27,6 @@ function App() {
           <Route path='/sign-up' element={<SignUpPage />} />
           {/* <Route path='/contact' element={<Contact/>}/> */}
           <Route path='/:adminId/*' element={<Authentication>
-            <Header />
             <Routes>
               <Route path='home' element={<Profile />} />
               <Route path='users' element={<Users />} />
