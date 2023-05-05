@@ -40,9 +40,9 @@ exports.createUser = async (req, res) => {
 exports.deleteUser = async (req, res) => {
   const adminId = req.params.adminId;
   const  id  = req.params.id;
+  console.log(adminId, id)
   try {
     const user = await UserService.getUserByIdAndDelete(id, adminId);
-    const users = await UserService.getUsers();
     res.status(201).json(user); 
   } catch (error) {
     res.status(404).json({ message: 'User not found' });

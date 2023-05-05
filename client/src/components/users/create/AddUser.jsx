@@ -1,24 +1,24 @@
 import './AddUser.css';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function AddUser() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isAdmin] = useState(false);
+  const { adminId } = useParams();
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetch('/api/users/new', {
+    fetch(`/api/${adminId}/users/new`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, email, password }),
     }).then(response => {
         if (response.ok) {
           console.log('User added successfully');
-          navigate('/profile/users/new/success');
+          navigate(`/${adminId}/users/new/success`);
         } else {
           throw new Error('Error adding user');
         }

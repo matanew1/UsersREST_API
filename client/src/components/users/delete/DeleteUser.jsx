@@ -1,29 +1,34 @@
 import './DeleteUser.css';
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function DeleteUser() {
   const [users, setUsers] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
+  const {adminId} = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('/api/users')
+    fetch(`/api/${adminId}/users`)
       .then(response => response.json())
-      .then(data => {
-        setUsers(data);
+      .then(async data => {
+        console.log('data',data)
+        const userObjects = await Promise.all(data.map(async userId => {
+          const response = await fetch(`/api/${adminId}/users/${userId}`);
+          return response.json();
+        }));
+        setUsers(userObjects);
       });
-  }, []);
+  }, [adminId]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    fetch(`/api/users/delete/${currentUser._id}`, {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' },
+    fetch(`/api/${adminId}/users/delete/${currentUser._id}`, {
+      method: 'DELETE'
     }).then(response => {
         if (response.ok) {
           console.log('User deleted successfully');
-          navigate('/profile/users/delete/success');
+          navigate(`/${adminId}/users/delete/success`);
         } else {
           throw new Error('Error deleting user');
         }

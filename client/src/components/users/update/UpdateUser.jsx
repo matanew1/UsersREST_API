@@ -1,6 +1,6 @@
 import './UpdateUser.css';
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function UpdateUser() {
   const [users, setUsers] = useState([]);
@@ -8,26 +8,32 @@ function UpdateUser() {
   const [name, setName] = useState(undefined);
   const [email, setEmail] = useState(undefined);
   const [password, setPassword] = useState(undefined);
+  const {adminId} = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('/api/users')
+    fetch(`/api/${adminId}/users`)
       .then(response => response.json())
-      .then(data => {
-        setUsers(data);
+      .then(async data => {
+        console.log('data',data)
+        const userObjects = await Promise.all(data.map(async userId => {
+          const response = await fetch(`/api/${adminId}/users/${userId}`);
+          return response.json();
+        }));
+        setUsers(userObjects);
       });
-  }, []);
+  }, [adminId]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    fetch(`/api/users/update/${currentUser._id}`, {
+    fetch(`/${adminId}/users/update/${currentUser._id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, email, password }),
     }).then(response => {
         if (response.ok) {
           console.log('User updated successfully');
-          navigate('/profile/users/update/success');
+          navigate(`/${adminId}/users/update/success`);
         } else {
           throw new Error('Error updating user');
         }

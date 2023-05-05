@@ -38,7 +38,7 @@ function Home() {
           {cards.map((card, index) => (
             <div key={index} className="Card">
               <h2 className="CardTitle">{card.title}</h2>
-              <p1 className="CardDescription">{card.description}</p1>
+              <h5 className="CardDescription">{card.description}</h5>
             </div>
           ))}
         </div>
