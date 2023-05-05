@@ -19,16 +19,23 @@ function Login() {
       body: JSON.stringify({ email, password }),
     }).then(response => {
       if (response.ok) {
-        console.log('User logged in successfully');
-        navigate('/profile/home');
-        toggleLogin(true);
+        response.json().then(data => {
+          const adminId = data._id;
+          console.log('User logged in successfully');
+          if (adminId) {
+            navigate(`/${adminId}/home`);
+          } else {
+            console.error('Admin ID is undefined');
+          }
+          toggleLogin(true);
+        });
       } else {
         setWrongDetails(true);
         throw new Error('Error log in user');
       }
-    })
+    });
   };
-
+  
   return (
     <div className="container">
       <h1>Login</h1>

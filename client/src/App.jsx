@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useParams } from 'react-router-dom';
 import Profile from './components/profile/Profile';
 import Home from './components/home/Home';
 import Users from './components/users/read/Users';
@@ -13,8 +13,10 @@ import AboutPage from './components/about/AboutPage';
 import Login from './components/login/Login';
 import { AuthProvider } from './components/login/AuthContext';
 import Authentication from './components/login/Authentication'
+import SignUpPage from './components/login/SignUpPage';
 
 function App() {
+
   return (
     <AuthProvider>
       <Header />
@@ -23,9 +25,11 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/login' element={<Login />} />
           <Route path='/about' element={<AboutPage />} />
+          <Route path='/sign-up' element={<SignUpPage />} />
           {/* <Route path='/contact' element={<Contact/>}/> */}
 
-          <Route path='/profile/*' element={<Authentication>
+          <Route path='/:adminId/*' element={<Authentication>
+            <Header />
             <Routes>
               <Route path='home' element={<Profile />} />
               <Route path='users' element={<Users />} />
@@ -37,6 +41,7 @@ function App() {
               <Route path='users/delete/success' element={<Success message='Deleted user' />} />
             </Routes>
           </Authentication>} />
+
 
         </Routes>
       </BrowserRouter>

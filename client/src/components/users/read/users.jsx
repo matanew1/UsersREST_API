@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import './Users.css';
 import Sort from '../operations/Sort';
 
@@ -6,20 +7,25 @@ function Users() {
   const [users, setUsers] = useState([]);
   const [showPassword, setShowPassword] = useState([]);
   const [sortby, setSortby] = useState('id');
+  const { adminId } = useParams();
 
   useEffect(() => {
-    fetch('/api/users')
+    fetch(`/api/${adminId}/users`)
       .then(response => response.json())
-      .then(data => {
-        setUsers(data);
-        setShowPassword(Array(data.length).fill(false));
+      .then(async data => {
+        const userObjects = await Promise.all(data.map(async userId => {
+          const response = await fetch(`/api/${adminId}/users/${userId}`);
+          return response.json();
+        }));
+        setUsers(userObjects);
+        setShowPassword(Array(userObjects.length).fill(false));
       });
-  }, []);
+  }, [adminId]);
+
 
   const toggleShowPassword = (index) => {
     setShowPassword(prevState => {
       const newState = [...prevState];
-      console.log(newState)
       newState[index] = !newState[index];
       return newState;
     });

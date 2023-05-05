@@ -1,9 +1,10 @@
 import './header.css';
 import { useContext } from 'react';
+import { useParams } from 'react-router-dom';
 import { AuthContext } from '../login/AuthContext'
 
 function Header() {
-
+  const { adminId } = useParams();
   const { isLoggedIn, toggleLogin } = useContext(AuthContext);
 
   const handleLogout = () => {
@@ -13,18 +14,17 @@ function Header() {
   return (
     <div className='header-container'>
       <header>
-        <a href="/profile/home">
-          <img src="/logo.jpg" alt="LOGO" />
-        </a>
+        <img src="/logo.jpg" alt="LOGO" />
         <nav>
           <ul className='header-ul'>
             {isLoggedIn ? (
               <>
                 <li><a onClick={handleLogout} href="/">Logout</a></li>
-                <li><a href="/profile/home">Dashboard</a></li>
+                <li><a href={`/${adminId}/home`}>Dashboard</a></li>
               </>
             ) : (
               <>
+                <li><a href="/sign-up">Sign up</a></li>
                 <li><a href="/login">Login</a></li>
                 <li><a href="/">Home</a></li>
               </>
