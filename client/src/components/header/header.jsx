@@ -1,10 +1,9 @@
 import './Header.css';
 import { useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../login/AuthContext'
 
 function Header() {
-  const { adminId } = useParams();
   const { isLoggedIn, toggleLogin } = useContext(AuthContext);
 
   const handleLogout = () => {
@@ -17,20 +16,19 @@ function Header() {
         <img src="/logo.jpg" alt="LOGO" />
         <nav>
           <ul className='header-ul'>
-            {console.log(isLoggedIn)}
             {isLoggedIn ? (
               <>
-                <li><a onClick={handleLogout} href="/">Logout</a></li>
+                <Link onClick={handleLogout} to="/">Logout</Link>
               </>
             ) : (
               <>
-                <li><a href="/sign-up">Sign up</a></li>
-                <li><a href="/login">Login</a></li>
-                <li><a href="/">Home</a></li>
+                <Link to="/">Home</Link>
+                <Link to="/sign-up">Sign up</Link>
+                <Link to="/login">Login</Link>
+                <Link to="/about">About</Link>
+                <Link to="/contact">Contact</Link>
               </>
             )}
-            <li><a href="/about">About</a></li>
-            <li><a href="/contact">Contact</a></li>
           </ul>
         </nav>
       </header>
