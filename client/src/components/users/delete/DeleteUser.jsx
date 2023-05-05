@@ -23,7 +23,7 @@ function DeleteUser() {
     }).then(response => {
         if (response.ok) {
           console.log('User deleted successfully');
-          navigate('/api/users/delete/success');
+          navigate('/profile/users/delete/success');
         } else {
           throw new Error('Error deleting user');
         }

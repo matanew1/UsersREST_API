@@ -27,7 +27,7 @@ function UpdateUser() {
     }).then(response => {
         if (response.ok) {
           console.log('User updated successfully');
-          navigate('/api/users/update/success');
+          navigate('/profile/users/update/success');
         } else {
           throw new Error('Error updating user');
         }

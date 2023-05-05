@@ -17,7 +17,7 @@ function AddUser() {
     }).then(response => {
         if (response.ok) {
           console.log('User added successfully');
-          navigate('/api/users/new/success');
+          navigate('/profile/users/new/success');
         } else {
           throw new Error('Error adding user');
         }
