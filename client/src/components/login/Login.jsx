@@ -7,7 +7,7 @@ import { AuthContext } from './AuthContext';
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [wrongDetails, setWrongDetails] = useState(false);
+  const [wrongDetails, setWrongDetails] = useState('');
   const navigate = useNavigate();
   const { toggleLogin } = useContext(AuthContext);
 
@@ -23,15 +23,15 @@ function Login() {
           const adminId = data._id;
           localStorage.setItem('adminId',adminId);
           console.log('User logged in successfully');
-          if (adminId) {
-            navigate(`/${adminId}/home`);
-          } else {
-            console.error('Admin ID is undefined');
-          }
+          if (adminId) {navigate(`/${adminId}/home`);} 
+          else {console.error('Admin ID is undefined');}
           toggleLogin(true);
         });
-      } else {
-        setWrongDetails(true);
+      } else {    
+        response.json().then(data => {
+          setWrongDetails(data.message);
+          console.log(data.message);
+        });
         throw new Error('Error log in user');
       }
     });
@@ -50,7 +50,7 @@ function Login() {
           <label htmlFor="password">Password:</label>
           <input maxLength="16" type="password" id="password" name="password" className="form-input" required
             value={password} onChange={(event) => setPassword(event.target.value)} />
-          {wrongDetails ? (<p>Wrong details, try again...</p>) : (<p></p>)}
+          <p>{wrongDetails}</p>
         </div>
         <button type="submit" className="btn">Submit</button>
       </form>

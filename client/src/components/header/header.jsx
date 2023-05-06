@@ -7,7 +7,17 @@ function Header() {
   const { isLoggedIn, toggleLogin } = useContext(AuthContext);
 
   const handleLogout = () => {
-    toggleLogin(false);
+    
+    fetch('/api/logout', {
+      method: 'GET',
+    }).then(response => {
+      if (response.ok) {
+        toggleLogin(false);
+        console.log("Admin logged out")
+      } else {
+        throw new Error('Error logout admin');
+      }
+    });
   }
   const adminId = localStorage.getItem('adminId');
   return (

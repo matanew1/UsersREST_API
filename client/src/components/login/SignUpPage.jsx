@@ -8,7 +8,7 @@ function SignUpPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
-  const [wrongDetails, setWrongDetails] = useState(false);
+  const [wrongDetails, setWrongDetails] = useState('');
   const navigate = useNavigate();
   const { toggleLogin } = useContext(AuthContext);
 
@@ -27,7 +27,7 @@ function SignUpPage() {
           toggleLogin(true);
         });
       } else {
-        setWrongDetails(true);
+        response.json().then(data => setWrongDetails(data.message));
         throw new Error('Error signing up admin');
       }
     })
@@ -53,7 +53,7 @@ return (
         <label htmlFor="password">Password:</label>
         <input maxLength="16" type="password" id="password" name="password" className="form-input" required
           value={password} onChange={(event) => setPassword(event.target.value)} />
-        {wrongDetails ? (<p>Wrong details, try again...</p>) : (<p></p>)}
+        <p>{wrongDetails}</p>
       </div>
       <button type="submit" className="btn">Submit</button>
     </form>

@@ -8,6 +8,9 @@ router.post('/admin/new', adminController.createAdmin);
 // login for admin user
 router.post('/login', adminController.loginAdmin);
 
+// logout for admin user
+router.get('/logout', adminController.logoutAdmin);
+
 // load page of all users
 router.get('/:adminId/users', adminController.getAllUsers);
 
