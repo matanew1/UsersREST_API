@@ -21,7 +21,6 @@ exports.createAdmin = async (req, res) => {
   }
 };
 exports.logoutAdmin = async (req, res) => {
-  console.log(req.session)
   if (req.session.user.isLoggedIn) {
     // Destroy the session
     req.session.destroy((error) => {
