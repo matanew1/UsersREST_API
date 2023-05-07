@@ -1,5 +1,4 @@
 const AdminService = require("../services/adminService")
-const mongoose = require("../../config/db");
 
 exports.createAdmin = async (req, res) => {
   const { name, email, password } = req.body;

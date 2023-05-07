@@ -24,16 +24,16 @@ const adminSchema = new Schema({
     }]
   });
   
-  // adminSchema.pre('save', async function() {
-  //   try {
-  //     const admin = this;
-  //     const salt = await bcrypt.genSalt(10);
-  //     const hashpass = await bcrypt.hash(admin.password, salt);
-  //     admin.password = hashpass;
-  //   } catch (error) {
-  //     throw error;
-  //   }
-  // });
+  adminSchema.pre('save', async function() {
+    try {
+      var admin = this;
+      const salt = await(bcrypt.genSalt(10));
+      const hashpass = await bcrypt.hash(admin.password, salt);
+      admin.password = hashpass;
+    } catch (error) {
+        throw error;  
+    }
+  })
   
   const Admin = mongoose.model('Admin', adminSchema);
   

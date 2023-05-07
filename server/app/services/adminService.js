@@ -1,5 +1,6 @@
 const Admin = require("../models/adminModel");
 const bcrypt = require("bcryptjs");
+const mongoose = require("../../config/db");
 
 class AdminService  {
     static async getUsers(adminId) {
@@ -24,19 +25,21 @@ class AdminService  {
     }
     static async loginAdmin(email, password) {
         try {
-            const admin = await Admin.findOne({ email });
-            if (!admin) {
-                throw new Error('Admin not exist');
-            }
-            const isPasswordMatch = password === admin.password;
-            if (!isPasswordMatch) {
-                throw new Error('Invalid email or password');
-            }
-            return admin;
+          const admin = await Admin.findOne({ email });
+          if (!admin) {
+            throw new Error('Admin does not exist');
+          }
+          const isPasswordMatch = await bcrypt.compare(password, admin.password);
+          if (!isPasswordMatch) {
+            throw new Error('Invalid email or password');
+          }
+      
+          return admin;
         } catch (error) {
-            throw error;
+          throw error;
         }
-    }
+      }
+      
     static async getAdminByEmail(email) {
         try {
             const admin = await Admin.findOne({ email });
