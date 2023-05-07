@@ -37,6 +37,21 @@ class AdminService  {
             throw error;
         }
     }
+    static async getAdminByEmail(email) {
+        try {
+            const admin = await Admin.findOne({ email });
+            return admin
+        } catch (error) {
+            throw error;
+        }
+    }
+    static async getSessionByEmail(email) {
+        const session = await mongoose.connection.collection('sessions')
+        .findOne({
+          'session.user.email': email
+        });
+        return session;
+    }
 }
 
 module.exports = AdminService;

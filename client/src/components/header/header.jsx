@@ -5,12 +5,14 @@ import { AuthContext } from '../login/AuthContext'
 
 function Header() {
   const { isLoggedIn, toggleLogin } = useContext(AuthContext);
-
+  const adminId = localStorage.getItem('adminId');
+  
   const handleLogout = () => {
     
     fetch('/api/logout', {
       method: 'GET',
     }).then(response => {
+      response.json().then(data => console.log(data))
       if (response.ok) {
         toggleLogin(false);
         console.log("Admin logged out")
@@ -19,7 +21,7 @@ function Header() {
       }
     });
   }
-  const adminId = localStorage.getItem('adminId');
+  
   return (
     <div className='header-container'>
       <header>

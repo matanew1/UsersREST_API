@@ -1,38 +1,32 @@
 const AdminService = require("../services/adminService")
-const {connectAdmins} = require("../../config/env")
+const mongoose = require("../../config/db");
 
 exports.createAdmin = async (req, res) => {
   const { name, email, password } = req.body;
   try {
     // Check if admin already exists
-    if (connectAdmins.has(email)) {
+    const existingAdmin = await AdminService.getAdminByEmail(email);
+    if (existingAdmin) {
       return res.status(400).json({ message: 'Admin already exists' });
     }
     // Create the admin
     const admin = await AdminService.createAdmin(name, email, password);
-
-    // Set session data for the newly created admin
-    req.session.isLoggedIn = true;
-    req.session.email = admin.email;
-    connectAdmins.set(admin.email, req.sessionID);
-
+    // Set session data for the newly created admin in MongoDB
+    req.session.user = {
+      email: admin.email,
+      isLoggedIn: true,
+    };
     res.status(201).json(admin);
   } catch (error) {
-    res.status(500).json({ message: 'Internal server error' });
+    res.status(500).json({ message: error.message });
   }
 };
 exports.logoutAdmin = async (req, res) => {
-  if (req.session.isLoggedIn) {
-    const email = req.session.email;
-    // Delete the admin from the connectAdmins object
-    if (connectAdmins.has(email)) {
-      connectAdmins.delete(email);
-    }
+  if (req.session.user.isLoggedIn) {
     // Destroy the session
     req.session.destroy((error) => {
       if (error) {
-        console.log('Error destroying session:', error);
-        res.status(500).json({ message: 'Internal server error' });
+        res.status(500).json({ message: 'Error destroying session:', error });
       } else {
         res.status(200).json({ message: 'Logout successful' });
       }
@@ -41,36 +35,25 @@ exports.logoutAdmin = async (req, res) => {
     res.status(200).json({ message: 'No active session to logout' });
   }
 };
-
-
 exports.loginAdmin = async (req, res) => {
-    const { email, password } = req.body; 
-    try { // is logged in
-      const admin = await AdminService.loginAdmin(email, password);
-
-      if(connectAdmins.has(admin.email)) {
-        const sessionID = connectAdmins.get(admin.email);
-        const sessionStore = req.sessionStore;
-        sessionStore.destroy(sessionID, (error) => {
-          if (error) { console.log('Error destroying session:', error); }
-          req.session.regenerate(() => {
-            req.session.isLoggedIn = true;
-            req.session.email = admin.email;
-            connectAdmins.set(admin.email, req.sessionID);
-          });
-        }); 
-        res.status(400).json({ message: "Admin is already logged in" });
-      } 
-      else { // is not logged in
-        req.session.isLoggedIn = true;
-        req.session.email = admin.email;
-        connectAdmins.set(admin.email, req.sessionID);
-        res.status(200).json(admin);       
-      }        
-    } catch (error) {
-      res.status(400).json({ message: error.message });
+  const { email, password } = req.body;
+  try {
+    const session = await AdminService.getSessionByEmail(email);
+    if (session) {
+      return res.status(400).json({ message: 'Admin is already logged in' });
     }
-}
+    const admin = await AdminService.loginAdmin(email, password);
+
+    req.session.user = {
+      email: admin.email,
+      isLoggedIn: true,
+    };
+
+    res.status(200).json(admin);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
 exports.getAllUsers = async (req, res) => {
   try {
     const adminId = req.params.adminId;
