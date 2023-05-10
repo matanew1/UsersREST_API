@@ -20,12 +20,13 @@ exports.createAdmin = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
-exports.logoutAdmin = async (req, res) => {
+exports.logoutAdmin = (req, res) => {
   if (req.session) {
     // Destroy the session
     req.session.destroy((error) => {
       if (error) {
-        res.status(500).json({ message: 'Error destroying session:', error });
+        console.log('Error destroying session:', error);
+        res.status(500).json({ message: 'Error destroying session' });
       } else {
         res.status(200).json({ message: 'Logout successful' });
       }
@@ -34,6 +35,7 @@ exports.logoutAdmin = async (req, res) => {
     res.status(200).json({ message: 'No active session to logout' });
   }
 };
+
 exports.loginAdmin = async (req, res) => {
   const { email, password } = req.body;
   try {

@@ -38,8 +38,7 @@ class AdminService  {
         } catch (error) {
           throw error;
         }
-      }
-      
+    }    
     static async getAdminByEmail(email) {
         try {
             const admin = await Admin.findOne({ email });

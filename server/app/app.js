@@ -28,7 +28,9 @@ app.use(
     saveUninitialized: false,
     store: store,
     cookie: {
+      secure: false,
       maxAge: 86400000, // Session duration in milliseconds (e.g., 24 hours)
+      sameSite: "strict"
     },
   })
 );

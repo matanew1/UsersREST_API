@@ -11,11 +11,25 @@ export const AuthProvider = ({ children }) => {
     const handleUnload = () => {
       localStorage.removeItem('isLoggedIn');
     };
+    const handleBeforeUnload = (event) => {
+      // Make a fetch request to /api/logout
+      fetch('/api/logout', {
+        method: 'GET',
+      }).then(response => {
+        response.json().then(data => console.log(data))
+        if (response.ok) {
+          console.log("Admin logged out")
+        } else {
+          throw new Error('Error logout admin');
+        }
+      });
 
-    window.addEventListener('beforeunload', handleUnload);
-
+      // The following line is optional, it shows a confirmation dialog to the user
+      event.preventDefault();
+      event.returnValue = ''; // Some browsers require a non-empty string
+    };
     return () => {
-      window.removeEventListener('beforeunload', handleUnload);
+      window.removeEventListener('beforeunload', handleUnload, handleBeforeUnload);
     };
   }, []);
 
@@ -26,7 +40,6 @@ export const AuthProvider = ({ children }) => {
   const toggleLogin = (loggedIn) => {
     setIsLoggedIn(loggedIn);
   };
-
   return (
     <AuthContext.Provider value={{ isLoggedIn, toggleLogin }}>
       {children}
