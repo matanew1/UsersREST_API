@@ -54,6 +54,19 @@ class AdminService  {
         });
         return session;
     }
+    static async getSessions() {
+        try {
+          const sessions = await mongoose.connection
+            .collection('sessions')
+            .find()
+            .toArray();          
+          const mappedSessions = sessions.map(session => session._id);
+          return mappedSessions;
+        } catch (error) {
+          throw error;
+        }
+      }
+      
 }
 
 module.exports = AdminService;

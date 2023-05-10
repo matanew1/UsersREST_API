@@ -14,5 +14,7 @@ router.get('/logout', adminController.logoutAdmin);
 // load page of all users
 router.get('/:adminId/users', adminController.getAllUsers);
 
+router.get('/online', adminController.getSessions);
+
 
 module.exports = router;

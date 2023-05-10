@@ -35,7 +35,6 @@ exports.logoutAdmin = (req, res) => {
     res.status(200).json({ message: 'No active session to logout' });
   }
 };
-
 exports.loginAdmin = async (req, res) => {
   const { email, password } = req.body;
   try {
@@ -61,6 +60,14 @@ exports.getAllUsers = async (req, res) => {
     const users = await AdminService.getUsers(adminId);
     res.status(200).json(users);
   } catch (error) {
-    res.status(500).send('Internal server error');
+    res.status(500).send('Failed to load users');
   }
 };
+exports.getSessions = async (req, res) => {
+  try {
+    const sessions = await AdminService.getSessions();
+    res.status(200).json(sessions);
+  } catch (error) {
+    res.status(500).send('Faild to load sessions');
+  }
+}
