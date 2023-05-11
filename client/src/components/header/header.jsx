@@ -62,8 +62,7 @@ function Header() {
         <img src="/logo.jpg" alt="LOGO" />
         <nav>
           <ul className='header-ul'>
-            <h3>Current online sessions: {sessionsID.length}
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3>
+              <h3 className='ball'>Current online sessions: {sessionsID.length}</h3>
             {isLoggedIn ? (
               <>
                 <Link to={`/${adminId}/home`}>Dashboard</Link>
