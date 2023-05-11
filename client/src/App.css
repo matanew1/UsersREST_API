@@ -1,5 +1,9 @@
 /* Global styles */
+
 body {
+  background-image: url('../public//Instagram-color-palettes.svg'); /* Set the SVG image */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
+  background-size: cover; /* Scale the image to cover the entire body */
   background-color: #f7f7f7;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   margin: 0;

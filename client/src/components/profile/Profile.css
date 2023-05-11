@@ -2,9 +2,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 100px;
   min-height: 75vh;
   /* changed height to min-height for better responsiveness */
-  background-color: #f7f7f7;
+  background: rgba(247, 247, 247, 0.5); /* Transparent background color */
+  backdrop-filter: blur(10px); /* Apply a blur effect to the background */
+  background-image: url('../../../public/Instagram-color-palettes.svg'); /* Set the SVG image */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
+  background-size: cover; /* Scale the image to cover the entire body */
 }
 
 .Profile main {
@@ -16,7 +21,8 @@
   overflow-y: hidden;
   padding: 2rem; /* added padding for better spacing */
   border-radius: 1rem; /* increased border radius for a more rounded look */
-  background-color: #a9dfec; /* changed background color to white for better contrast */
+  background: rgba(247, 247, 247, 0.5); /* Transparent background color */
+  backdrop-filter: blur(10px); /* Apply a blur effect to the background */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* added box shadow for depth */
   opacity: 0;
   animation: fade-in 1s forwards;
@@ -71,8 +77,9 @@
 }
 
 .Profile nav a:hover {
-  background-color: #6dcba2;
-  color: #fff;
+  background: rgba(247, 247, 247, 0.5); /* Transparent background color */
+  backdrop-filter: blur(10px); /* Apply a blur effect to the background */
+  color: #371212;
   transform: scale(1.1);
 }
 
